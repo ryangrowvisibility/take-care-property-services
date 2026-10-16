@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand: oklch(0.39 0.075 158);
+  --color-brand-dark: oklch(0.3 0.06 160);
+  --color-cream: oklch(0.975 0.014 88);
+  --color-cta: oklch(0.81 0.145 84);
+  --color-cta-hover: oklch(0.76 0.145 80);
+  --color-ink: oklch(0.24 0.02 160);
+  --color-muted: oklch(0.45 0.02 160);
+  --color-line: oklch(0.9 0.018 90);
+  --color-star: oklch(0.78 0.16 75);
+  --font-sans: var(--font-body);
+  --font-head: var(--font-heading);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html { background: oklch(0.993 0.006 88) !important; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  background: oklch(0.993 0.006 88) !important;
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.125rem; line-height: 1.6; font-kerning: normal;
+}
+h1, h2, h3 { font-family: var(--font-heading), system-ui, sans-serif; line-height: 1.1; letter-spacing: -0.015em; text-wrap: balance; }
+p { text-wrap: pretty; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 3.25rem; padding: 0 1.4rem; border-radius: .75rem; font-weight: 700;
+  transition: transform 160ms var(--ease-out), background-color 180ms ease;
+}
+.btn:active { transform: scale(0.97); }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--color-cta); outline-offset: 3px; }
+
+@keyframes ring { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 50% { transform: rotate(10deg); } 75% { transform: rotate(-6deg); } }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .ringer { animation: ring 420ms var(--ease-out); }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -24px oklch(0.3 0.06 160 / .5); }
+}
+.card { transition: transform 220ms var(--ease-out), box-shadow 220ms ease; }
+
+@keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.enter { animation: enter 420ms var(--ease-out) both; }
+.enter-2 { animation-delay: 80ms; }
+.enter-3 { animation-delay: 160ms; }
+
+details summary { list-style: none; cursor: pointer; }
+details summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(180deg); }
+.chev { transition: transform 200ms var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
